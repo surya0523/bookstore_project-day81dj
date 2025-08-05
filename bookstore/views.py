@@ -11,10 +11,12 @@ def book_detail(request, pk):
 
 def author_detail(request, pk):
     author = get_object_or_404(Author, pk=pk)
+    # Using the related_name to get all books by this author
     books = author.books.all()
     return render(request, 'bookstore/author_detail.html', {'author': author, 'books': books})
     
 def category_detail(request, pk):
     category = get_object_or_404(Category, pk=pk)
+    # Reverse access to get all books in this category
     books = category.book_set.all()
     return render(request, 'bookstore/category_detail.html', {'category': category, 'books': books})

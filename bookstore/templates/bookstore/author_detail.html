@@ -1,0 +1,27 @@
+{% extends 'bookstore/base.html' %}
+
+{% block title %}Author: {{ author.name }}{% endblock %}
+
+{% block content %}
+<div class="card shadow-sm">
+    <div class="card-body">
+        <h1 class="card-title">{{ author.name }}</h1>
+        <p class="card-text"><strong>Bio:</strong> {{ author.bio }}</p>
+    </div>
+</div>
+
+<h2 class="mt-4">Books by {{ author.name }}:</h2>
+<div class="list-group">
+    {% if books %}
+        {% for book in books %}
+            <a href="{% url 'book_detail' book.pk %}" class="list-group-item list-group-item-action">
+                {{ book.title }}
+            </a>
+        {% endfor %}
+    {% else %}
+        <p class="alert alert-info">This author has not written any books yet.</p>
+    {% endif %}
+</div>
+
+<a href="{% url 'book_list' %}" class="btn btn-secondary mt-3">Back to all books</a>
+{% endblock %}

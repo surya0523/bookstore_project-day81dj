@@ -1,0 +1,31 @@
+{% extends 'bookstore/base.html' %}
+
+{% block title %}All Books{% endblock %}
+
+{% block content %}
+<div class="p-5 mb-4 bg-light rounded-3">
+    <div class="container-fluid py-5">
+        <h1 class="display-5 fw-bold">Welcome to Our Bookstore!</h1>
+        <p class="col-md-8 fs-4">Explore a wide range of books from various authors and categories.</p>
+    </div>
+</div>
+
+<div class="row">
+    {% if books %}
+        {% for book in books %}
+            <div class="col-md-4 mb-4">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ book.title }}</h5>
+                        <p class="card-text text-muted">by <a href="{% url 'author_detail' book.author.pk %}" class="card-link">{{ book.author.name }}</a></p>
+                        <p class="card-text"><strong>Price:</strong> ${{ book.price }}</p>
+                        <a href="{% url 'book_detail' book.pk %}" class="btn btn-primary">View Details</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p class="alert alert-warning">No books are available yet.</p>
+    {% endif %}
+</div>
+{% endblock %}

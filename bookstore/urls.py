@@ -6,4 +6,4 @@ urlpatterns = [
     path('book/<int:pk>/', views.book_detail, name='book_detail'),
     path('author/<int:pk>/', views.author_detail, name='author_detail'),
     path('category/<int:pk>/', views.category_detail, name='category_detail'),
-]
+]   
